@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
+from todos import views
 
 # http://127.0.0.1:8000/admin/
-# include ():
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("todos.urls")),  # dev_1
+    path("", views.home, name="home"),  # dev_1
 ]
