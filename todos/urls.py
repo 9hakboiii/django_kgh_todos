@@ -4,5 +4,6 @@ from todos import views
 
 # http://127.0.0.1:8000/admin/
 urlpatterns = [
-    path("", views.home, name="home"),  # dev_1
+    path("", views.todo_list, name="todo_list"),  # dev_1
+    path("post/", views.todo_post, name="todo_post"),  # dev_3
 ]
