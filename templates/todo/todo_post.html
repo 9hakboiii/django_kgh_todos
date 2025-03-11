@@ -20,6 +20,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
+                  {% comment %}<from>의 action이 비어있으므로, 현재 페이지의 URL{% endcomment %}
                   <form method="POST">
                     {% comment %}form.as_p: models.py의 구조를 참고하여 p태그 안에 요소들과 form 기능을 배치{% endcomment %}
                     {% csrf_token %} {{ form.as_p }} 
