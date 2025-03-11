@@ -28,9 +28,14 @@ def todo_post(request):
 
     if request.method == "POST":
         form = TodoForm(request.POST)
-        if form.is_valid():
-            todo = form.save(commit=False)
-            todo.save()
+
+        if (
+            form.is_valid()
+        ):  # 값 검증, 모든 필드가 올바르게 입력되었는지 확인하고, 유효하지 않으면 오류 메시지를 제공
+            todo = form.save(
+                commit=False
+            )  # form 데이터를 사용하여 todo 객체 생성, commit=False는 db에 즉시저장 x
+            todo.save()  # todo 객체를 db에 저장
             return redirect("todo_list")
     else:
         form = TodoForm()

@@ -8,41 +8,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="This is a to-do list application.">
   <meta name="keywords" content="to-do, tasks, list, productivity">
-  <title>Document</title>
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
+  <title>ToDo 목록 앱</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="container">
-        <h1>Done 목록</h1>
+        <h1>TODO 목록 앱</h1>
         <p>
-            <a href="{% url 'todo_list'%}" class="btn btn-primary">홈으로</a>
+            <a href="{% url 'todo_post' %}">
+                <i class="bi-plus"></i>Add Todo
+            </a>
+            <a href="" class="btn btn-primary" style="float: right">
+                완료한 TODO 목록
+            </a>
         </p>
         <ul class="list-group">
-            {% comment %}
-                {% for done in dones %}
-                    <li class="list-group-item">
-                        <a href="{%url 'todo_post'%}"></a>
-                        <a href="{% url 'todo_detail' pk=done.pk %}">{{ done.title }}</a>
-                        {% if done.important %}
-                            <span class="badge badge-danger">!</span>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            {% endcomment %}
-
-          {% for todo in todos %} <!--views.py의 {'todos': todos} 값을 할당-->
-            {{ todo.title }}<br>
-            {{ todo.description }}<br>
-            {{ todo.created }}<br>
-            {{ todo.important }}<br>
-            <hr> <br>
-          {% endfor %}
-
-          <!-- lorem도 지원한다 (대박사건) -->
-          {% lorem %}   <!--lorem 생성-->
-          {% lorem 3 p%}
-          {%lorem 2 w random %} {% lorem 5 w random%}
+            
+            {% for todo in todos %} <!--todos는 views.py의 context 객체 key값-->
+                <li class="list-group-item">
+                    <a href="">{{ todo.title }}</a>
+                    
+                    {% if todo.important %}
+                        <span class="badge badge-danger">!</span>
+                    {% endif %}
+                        <div style="float: right">
+                            <a href="" class="btn btn-danger">완료</a>
+                            <a href="" class="btn btn-outline-primary">수정하기</a>
+                        </div>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </body>
