@@ -66,3 +66,18 @@ def todo_edit(request, pk):
         form = TodoForm(instance=todo)
 
     return render(request, "todo/todo_post.html", {"form": form})
+
+
+def todo_done(request, pk):
+    todo = Todo.objects.get(id=pk)
+    todo.complete = True
+    todo.save()
+    return redirect("todo_list")
+
+
+def done_list(request):
+    dones = Todo.objects.filter(complete=True)
+    return render(request, "todo/todo_done.html", {"dones": dones})
+
+
+# redirect 하고 forward의 차이이
