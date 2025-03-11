@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <form method="POST">
                     {% comment %}form.as_p: models.py의 구조를 참고하여 p태그 안에 요소들과 form 기능을 배치{% endcomment %}
-                    {% csrf_token %} {{ form.as_p }}
+                    {% csrf_token %} {{ form.as_p }} 
                     <button type="submit" class="btn btn-primary">등록</button>
                   </form>
                 </div>
