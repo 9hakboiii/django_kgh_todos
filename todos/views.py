@@ -18,7 +18,9 @@ def todo_list(request):
     # objects > QuerySet 자료형으로 리턴
     # filter = where절
     todos = Todo.objects.filter(complete=0)
-    return render(request, "todo/todo_list.html", {"todos": todos})  # context 객체
+    return render(
+        request, "todo/todo_list.html", {"todos": todos}
+    )  # context 객체 (key : value 형태로 넘김)
 
 
 # dev_3
