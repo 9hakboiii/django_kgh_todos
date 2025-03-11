@@ -27,7 +27,7 @@
             
             {% for todo in todos %} <!--todos는 views.py의 context 객체 key값-->
                 <li class="list-group-item">
-                    <a href="">{{ todo.title }}</a>
+                    <a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a>
                     
                     {% if todo.important %}
                         <span class="badge badge-danger">!</span>
