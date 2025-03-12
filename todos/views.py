@@ -2,11 +2,49 @@ from django.shortcuts import render, redirect
 from .forms import TodoForm
 from .models import Todo
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import JsonResponse
+
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import TodoDRFSerializer
+
 # Create your views here.
 
+
+# dev_7
+# DRF 방식
+# @api_view(["GET"])
+# def todo_drf(request):
+#     return Response({"message": "Hello World!"})
+
+# API => 함수 => json, xml(데이터) 가져오는(호출) 함수
+
+
+# class type
+class TodoAPIView(APIView):
+    def get(self, request):
+        # querySet 객체로 리턴 (Todo의 모든 데이터)
+        # 리턴 타입이 queryset이면 serializer = TodoDRFSerializer(todos, many=True)
+        # Todo.objects.get() 또는 Todo.objects.filter() 단독으로 객체가 오면 many=False
+        todos = Todo.objects.all()
+
+        # print(todos): QuerySet 객체 값 볼 수 있음
+        # querysSet 리턴일 경우 many=True(꼭 적어줘야함!)
+        serializer = TodoDRFSerializer(todos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        pass
+
+
+# # Django에서 제공해 줌
+# def todo_drf(request):
+#     return JsonResponse({"message": "Hello World!"})
+
+
 # dev_1
-
-
 def home(request):
     # return HttpResponse('<h1>안녕하세요</h1>')
     return render(request, "home.html")
@@ -80,4 +118,4 @@ def done_list(request):
     return render(request, "todo/todo_done.html", {"dones": dones})
 
 
-# redirect 하고 forward의 차이이
+# redirect 하고 forward의 차이

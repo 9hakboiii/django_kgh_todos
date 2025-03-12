@@ -13,5 +13,8 @@ urlpatterns = [
     path("<int:pk>/edit", views.todo_edit, name="todo_edit"),  # dev_5
     # http://127.0.0.1:8000/todo/done/
     path("done/", views.done_list, name="done_list"),  # dev_6
-    path("done/<int:pk>", views.todo_done, name="todo_done"),
+    path("done/<int:pk>", views.todo_done, name="todo_done"),  # dev_6
+    # path("drf/", views.todo_drf, name="todo_drf"),  # dev_7
+    # 클래스는 as_view로 적어야 함
+    path("drf/", views.TodoAPIView.as_view(), name="todo_drf"),  # dev_7
 ]
