@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     "todos",  # dev_1
     "django_bootstrap5",  # dev_3
     "debug_toolbar",  # dev_3
-    "rest_framework",
-    "django_filters",
+    "rest_framework",  # dev_6
+    "django_filters",  # dev_6
 ]
 
 # Spring 에서는 filter 기능
